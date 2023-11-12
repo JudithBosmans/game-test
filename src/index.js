@@ -1,17 +1,33 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { Suspense } from "react";
+import ReactDOM from "react-dom/client";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import { Canvas } from "@react-three/fiber";
+import { Physics } from "@react-three/cannon";
+
+import "./index.css";
+import Scene from "./Scene.jsx";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+  <>
+    <Canvas>
+      <Suspense fallback={null}>
+        <Physics
+          //SAP -> Sweep and Prune, een manier om te checken of er objects in de scene gaan colliden
+          //gravity -> Duh, alleen y heeft een waarde omdat de objecten naar beneden getrokken moeten worden
+          broadphase="SAP"
+          gravity={[0, -2.6, 0]}
+        >
+          <Scene />
+        </Physics>
+      </Suspense>
+    </Canvas>
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+    <div class="controls">
+      <p>press w a s d to move</p>
+      <p>press k to swap camera</p>
+      <p>press r to reset</p>
+      <p>press arrows for flips</p>
+    </div>
+  </>
+);
