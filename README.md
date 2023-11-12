@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# All credit goes to Irradiance on youtube and his amzing tutorial on React Three Fiber. https://www.youtube.com/watch?v=wHw3Gh0IhNc 
+ 
 ## Available Scripts
 
 In the project directory, you can run:
